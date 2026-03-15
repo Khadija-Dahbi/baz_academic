@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الدورات المسجلة - أكاديمية باز</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+    :root{
+      --primary:#2563eb;
+      --secondary:#f59e0b;
+      --dark:#0f172a;
+      --text:#475569;
+      --muted:#64748b;
+      --bg:#f8fafc;
+      --white:#ffffff;
+      --border:#e2e8f0;
+      --kids-pink:#ec4899;
+      --shadow-sm:0 4px 12px rgba(0,0,0,0.05);
+      --shadow-md:0 10px 25px rgba(0,0,0,0.08);
+      --transition:0.3s ease;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Cairo',sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+      line-height:1.8;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:16px 8%;
+      background:#f4f7ff;
+      box-shadow:var(--shadow-sm);
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      font-size:1.9rem;
+      font-weight:900;
+      color:var(--primary);
+    }
+
+    .logo span{
+      color:var(--secondary);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-weight:700;
+      transition:var(--transition);
+      padding-bottom:4px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--primary);
+    }
+
+    .nav-links a.active{
+      border-bottom:2px solid var(--primary);
+    }
+
+    .hero{
+      background:linear-gradient(90deg,#2563eb 0%, #f59e0b 100%);
+      color:white;
+      text-align:center;
+      padding:70px 20px 55px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:0 auto;
+      font-size:1.1rem;
+      color:rgba(255,255,255,0.92);
+    }
+
+    .section{
+      padding:45px 8% 60px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .filters-box{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow-sm);
+      padding:16px;
+      margin-bottom:28px;
+    }
+
+    .filters{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .filter-btn{
+      border:none;
+      background:#eef2f7;
+      color:#334155;
+      padding:10px 18px;
+      border-radius:999px;
+      font-family:'Cairo',sans-serif;
+      font-weight:700;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+
+    .filter-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .filter-btn.active{
+      background:var(--primary);
+      color:white;
+    }
+
+    .courses-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .course-card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      transition:var(--transition);
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    .course-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow-md);
+    }
+
+    .course-image{
+      position:relative;
+    }
+
+    .course-image img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .course-content{
+      padding:18px 18px 20px;
+      text-align:right;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+
+    .course-content h3{
+      font-size:1.65rem;
+      line-height:1.4;
+      margin-bottom:10px;
+      color:var(--dark);
+      min-height:74px;
+    }
+
+    .course-meta{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:0.95rem;
+      margin-bottom:12px;
+    }
+
+    .course-meta span{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .course-content p{
+      color:var(--text);
+      font-size:1rem;
+      margin-bottom:16px;
+      flex-grow:1;
+      min-height:64px;
+    }
+
+    .course-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding:12px;
+      border-radius:14px;
+      font-weight:700;
+      color:white;
+      transition:var(--transition);
+      margin-top:auto;
+    }
+
+    .btn-blue{
+      background:var(--primary);
+    }
+
+    .btn-pink{
+      background:var(--kids-pink);
+    }
+
+    .footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:32px 20px;
+      margin-top:30px;
+    }
+
+    .footer p{
+      opacity:0.8;
+    }
+
+    @media (max-width:992px){
+      .hero h1{
+        font-size:2.4rem;
+      }
+
+      .course-content h3{
+        font-size:1.4rem;
+        min-height:auto;
+      }
+
+      .course-content p{
+        min-height:auto;
+      }
+    }
+
+    @media (max-width:768px){
+      .navbar{
+        justify-content:center;
+        text-align:center;
+      }
+
+      .nav-links{
+        justify-content:center;
+      }
+
+      .hero{
+        padding:55px 20px 45px;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .hero p{
+        font-size:1rem;
+      }
+
+      .section{
+        padding:35px 6% 50px;
+      }
+
+      .course-image img{
+        height:210px;
+      }
+
+      .course-content h3{
+        font-size:1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">أكاديمية <span>باز</span></div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="adults.html">أكاديمية المحترفين</a></li>
+      <li><a href="courses.html" class="active">الدورات المسجلة</a></li>
+      <li><a href="projects.html">المشاريع</a></li>
+      <li><a href="blog.html">المدونة</a></li>
+      <li><a href="announcements.html">الإعلانات</a></li>
+      <li><a href="about.html">من نحن</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>الدورات المسجلة</h1>
+    <p>
+      تعلم بالسرعة التي تناسبك من خلال مكتبتنا الغنية بالدورات المسجلة عالية الجودة.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="filters-box">
+        <div class="filters">
+          <button class="filter-btn active">الكل</button>
+          <button class="filter-btn">أكاديمية المحترفين</button>
+          <button class="filter-btn">التكنولوجيا والبرمجة</button>
+          <button class="filter-btn">اللغات</button>
+        </div>
+      </div>
+
+      <div class="courses-grid">
+
+        <article class="course-card">
+          <div class="course-image">
+            <img src="images/apple-baz.png" alt="أساسيات اللغة الإنجليزية">
+          </div>
+
+          <div class="course-content">
+            <h3>أساسيات اللغة الإنجليزية</h3>
+
+            <div class="course-meta">
+              <span><i class="fas fa-play-circle"></i> قائمة تشغيل</span>
+              <span><i class="far fa-clock"></i> 20 درس</span>
+            </div>
+
+            <p>
+              دورة موجهة لجميع الأعمار لتأسيس مهارات التحدث والاستماع والمفردات الأساسية.
+            </p>
+
+            <a href="english.html" class="course-btn btn-blue">ابدأ التعلم</a>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <div class="course-image">
+            <img src="images/nano-kids.png" alt="برمجة الألعاب باستخدام سكراتش">
+          </div>
+
+          <div class="course-content">
+            <h3>برمجة الألعاب باستخدام سكراتش</h3>
+
+            <div class="course-meta">
+              <span><i class="fas fa-play-circle"></i> قائمة تشغيل</span>
+              <span><i class="far fa-clock"></i> 12 درس</span>
+            </div>
+
+            <p>
+              تعلم أساسيات المنطق البرمجي من خلال تصميم ألعاب ممتعة وتفاعلية.
+            </p>
+
+            <a href="kids.html" class="course-btn btn-pink">ابدأ التعلم</a>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <div class="course-image">
+            <img src="images/engeering-baz.png" alt="بوتكامب تطوير الويب">
+          </div>
+
+          <div class="course-content">
+            <h3>بوتكامب تطوير الويب (HTML, CSS, JS)</h3>
+
+            <div class="course-meta">
+              <span><i class="fas fa-play-circle"></i> قائمة تشغيل</span>
+              <span><i class="far fa-clock"></i> 25 درس</span>
+            </div>
+
+            <p>
+              دورة شاملة لتطوير واجهات المستخدم من الصفر حتى الاحتراف.
+            </p>
+
+            <a href="adults.html" class="course-btn btn-blue">ابدأ التعلم</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 أكاديمية باز | الدورات المسجلة</p>
+  </footer>
+
+</body>
+</html>

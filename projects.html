@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المشاريع - أكاديمية باز</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+body{
+font-family:'Cairo',sans-serif;
+margin:0;
+background:#f8fafc;
+color:#0f172a;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+background:#fff;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.logo{
+font-size:1.8rem;
+font-weight:900;
+color:#2563eb;
+}
+
+.logo span{
+color:#f59e0b;
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:25px;
+margin:0;
+padding:0;
+}
+
+.nav-links a{
+text-decoration:none;
+font-weight:700;
+color:#64748b;
+}
+
+.nav-links a:hover{
+color:#2563eb;
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(135deg,#f59e0b,#ea580c);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:2.7rem;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:1.1rem;
+max-width:700px;
+margin:auto;
+opacity:0.9;
+}
+
+/* SECTIONS */
+
+.section{
+padding:70px 8%;
+}
+
+.section h2{
+margin-bottom:30px;
+font-size:2rem;
+}
+
+/* CARDS */
+
+.projects-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.project-card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.project-card:hover{
+transform:translateY(-5px);
+}
+
+.project-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.project-content{
+padding:20px;
+}
+
+.tag{
+display:inline-block;
+padding:6px 12px;
+border-radius:8px;
+font-size:0.8rem;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.tag-web{
+background:#6366f1;
+color:white;
+}
+
+.tag-robot{
+background:#ec4899;
+color:white;
+}
+
+.tag-scratch{
+background:#ec4899;
+color:white;
+}
+
+.project-content h3{
+margin:10px 0;
+}
+
+.project-content p{
+color:#64748b;
+font-size:0.95rem;
+}
+
+/* FOOTER */
+
+.footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">أكاديمية <span>باز</span></div>
+
+<ul class="nav-links">
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="adults.html">أكاديمية المحترفين</a></li>
+<li><a href="courses.html">الدورات المسجلة</a></li>
+<li><a href="projects.html">المشاريع</a></li>
+<li><a href="blog.html">المدونة</a></li>
+<li><a href="announcements.html">الإعلانات</a></li>
+<li><a href="about.html">من نحن</a></li>
+</ul>
+
+</nav>
+
+<header class="hero">
+
+<h1>مشاريع الأكاديمية</h1>
+
+<p>
+نفتخر بإبداعات طلابنا وأكاديميتنا. استعرض أبرز المشاريع التي طورها أطفالنا وشبابنا.
+</p>
+
+</header>
+
+<section class="section">
+
+<h2>مشاريع الكبار</h2>
+
+<div class="projects-grid">
+
+<div class="project-card">
+
+<img src="images/com-baz.png">
+
+<div class="project-content">
+
+<span class="tag tag-web">تطوير ويب</span>
+
+<h3>منصة إدارة الموارد الطبية</h3>
+
+<p>
+نظام متكامل طوره متدربو مسار البرمجة المتقدمة لإدارة المخزون في المستشفيات.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>مشاريع الأطفال</h2>
+
+<div class="projects-grid">
+
+<div class="project-card">
+
+<img src="images/robot-baz.png">
+
+<div class="project-content">
+
+<span class="tag tag-robot">روبوتكس</span>
+
+<h3>الروبوت المساعد الذكي</h3>
+
+<p>
+مشروع تركيب وبرمجة روبوت صغير للقيام بمهام بسيطة باستخدام أردوينو.
+</p>
+
+</div>
+</div>
+
+
+<div class="project-card">
+
+<img src="images/adventure-baz.png">
+
+<div class="project-content">
+
+<span class="tag tag-scratch">لعبة سكراتش</span>
+
+<h3>مغامرة تنظيف المحيط</h3>
+
+<p>
+لعبة تعليمية تفاعلية صممها طلاب المستوى الأول للتوعية بالبيئة باستخدام سكراتش.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<p>© 2026 أكاديمية باز | المشاريع</p>
+
+</footer>
+
+</body>
+</html>

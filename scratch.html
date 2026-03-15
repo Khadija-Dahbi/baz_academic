@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>برمجة الألعاب باستخدام سكراتش | أكاديمية باز</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+    :root{
+      --primary:#2563eb;
+      --secondary:#ec4899;
+      --accent:#f59e0b;
+      --dark:#0f172a;
+      --text:#475569;
+      --muted:#64748b;
+      --bg:#f8fafc;
+      --white:#ffffff;
+      --border:#e2e8f0;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --purple:#7c3aed;
+      --shadow-sm:0 4px 12px rgba(0,0,0,0.05);
+      --shadow-md:0 12px 30px rgba(0,0,0,0.08);
+      --radius:20px;
+      --transition:0.3s ease;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Cairo',sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+      line-height:1.9;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:16px 8%;
+      background:#ffffff;
+      box-shadow:var(--shadow-sm);
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      font-size:1.9rem;
+      font-weight:900;
+      color:var(--primary);
+    }
+
+    .logo span{
+      color:var(--accent);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-weight:700;
+      transition:var(--transition);
+      padding-bottom:4px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--primary);
+    }
+
+    .nav-links a.active{
+      border-bottom:2px solid var(--primary);
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#2563eb 0%, #7c3aed 50%, #ec4899 100%);
+      color:white;
+      padding:60px 8%;
+    }
+
+    .hero-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .hero-text h1{
+      font-size:2.8rem;
+      line-height:1.4;
+      margin-bottom:12px;
+    }
+
+    .hero-text p{
+      color:rgba(255,255,255,0.95);
+      font-size:1.05rem;
+      max-width:700px;
+      margin-bottom:20px;
+    }
+
+    .hero-badges{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .hero-badge{
+      background:rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.18);
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:0.95rem;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.16);
+      border-radius:24px;
+      padding:24px;
+      backdrop-filter:blur(8px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .hero-card h3{
+      font-size:1.3rem;
+      margin-bottom:12px;
+    }
+
+    .hero-card ul{
+      display:grid;
+      gap:10px;
+    }
+
+    .hero-card li{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#fff;
+    }
+
+    .hero-card i{
+      color:#fde68a;
+    }
+
+    .page-wrap{
+      padding:35px 8% 60px;
+    }
+
+    .course-layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .sidebar,
+    .content-card,
+    .quiz-box{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+    }
+
+    .sidebar{
+      overflow:hidden;
+      position:sticky;
+      top:20px;
+    }
+
+    .sidebar-header{
+      padding:22px;
+      background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+      border-bottom:1px solid var(--border);
+    }
+
+    .sidebar-header h2{
+      font-size:1.3rem;
+      margin-bottom:5px;
+    }
+
+    .sidebar-header p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .lesson-list{
+      padding:10px;
+    }
+
+    .lesson-item{
+      width:100%;
+      border:none;
+      background:transparent;
+      text-align:right;
+      padding:14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:var(--transition);
+      font-family:'Cairo',sans-serif;
+      margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .lesson-item:hover{
+      background:#f8fafc;
+    }
+
+    .lesson-item.active{
+      background:linear-gradient(135deg,#2563eb,#7c3aed);
+      color:white;
+    }
+
+    .lesson-number{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(37,99,235,0.12);
+      color:var(--primary);
+      font-weight:900;
+      flex-shrink:0;
+    }
+
+    .lesson-item.active .lesson-number{
+      background:rgba(255,255,255,0.18);
+      color:white;
+    }
+
+    .lesson-title{
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.5;
+    }
+
+    .main-content{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .content-card{
+      padding:24px;
+    }
+
+    .lesson-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .lesson-title-wrap h2{
+      font-size:2rem;
+      margin-bottom:6px;
+    }
+
+    .lesson-title-wrap p{
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .lesson-badge{
+      background:#eff6ff;
+      color:var(--primary);
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .video-box{
+      border-radius:18px;
+      overflow:hidden;
+      background:#000;
+      margin-bottom:22px;
+      box-shadow:var(--shadow-md);
+    }
+
+    .video-box video{
+      width:100%;
+      height:460px;
+      object-fit:cover;
+      display:block;
+      background:#000;
+    }
+
+    .section-title{
+      font-size:1.3rem;
+      margin-bottom:12px;
+      color:var(--dark);
+    }
+
+    .lesson-text{
+      color:var(--text);
+      font-size:1.03rem;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      padding:18px;
+      border-radius:16px;
+      margin-bottom:18px;
+    }
+
+    .lesson-goals{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .goal-card{
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow-sm);
+    }
+
+    .goal-card h4{
+      font-size:1rem;
+      margin-bottom:8px;
+      color:var(--purple);
+    }
+
+    .goal-card p{
+      color:var(--text);
+      font-size:0.95rem;
+      line-height:1.8;
+    }
+
+    .task-box{
+      background:linear-gradient(135deg,#fff7ed,#fef3c7);
+      border:1px solid #fde68a;
+      border-radius:18px;
+      padding:18px;
+      margin-bottom:18px;
+    }
+
+    .task-box h3{
+      margin-bottom:8px;
+      color:#92400e;
+    }
+
+    .task-box p{
+      color:#78350f;
+    }
+
+    .lesson-nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:12px;
+      padding:12px 18px;
+      font-family:'Cairo',sans-serif;
+      font-weight:700;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#2563eb,#7c3aed);
+      color:white;
+    }
+
+    .btn-primary:hover{
+      opacity:0.95;
+      transform:translateY(-1px);
+    }
+
+    .btn-light{
+      background:#e2e8f0;
+      color:#0f172a;
+    }
+
+    .btn-light:hover{
+      background:#cbd5e1;
+    }
+
+    .quiz-box{
+      padding:24px;
+    }
+
+    .quiz-box h3{
+      font-size:1.5rem;
+      margin-bottom:6px;
+    }
+
+    .quiz-note{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .question{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:16px;
+      background:#fcfdff;
+    }
+
+    .question h4{
+      margin-bottom:12px;
+      font-size:1.05rem;
+    }
+
+    .options{
+      display:grid;
+      gap:10px;
+    }
+
+    .option{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      cursor:pointer;
+      transition:var(--transition);
+      background:white;
+    }
+
+    .option:hover{
+      border-color:#93c5fd;
+      background:#eff6ff;
+    }
+
+    .option input{
+      accent-color:var(--primary);
+    }
+
+    .quiz-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:14px;
+      font-weight:700;
+      display:none;
+    }
+
+    .result-box.success{
+      display:block;
+      background:#dcfce7;
+      color:#166534;
+      border:1px solid #86efac;
+    }
+
+    .result-box.fail{
+      display:block;
+      background:#fee2e2;
+      color:#991b1b;
+      border:1px solid #fca5a5;
+    }
+
+    .footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:28px 20px;
+      margin-top:40px;
+    }
+
+    .footer p{
+      opacity:0.85;
+    }
+
+    @media (max-width:1100px){
+      .hero-inner,
+      .course-layout{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+    }
+
+    @media (max-width:768px){
+      .navbar{
+        justify-content:center;
+        text-align:center;
+      }
+
+      .nav-links{
+        justify-content:center;
+      }
+
+      .hero{
+        padding:45px 20px 35px;
+      }
+
+      .hero-text h1{
+        font-size:2rem;
+      }
+
+      .page-wrap{
+        padding:25px 6% 50px;
+      }
+
+      .content-card,
+      .quiz-box{
+        padding:18px;
+      }
+
+      .video-box video{
+        height:240px;
+      }
+
+      .lesson-title-wrap h2{
+        font-size:1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">أكاديمية <span>باز</span></div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="adults.html">أكاديمية المحترفين</a></li>
+      <li><a href="courses.html" class="active">الدورات المسجلة</a></li>
+      <li><a href="projects.html">المشاريع</a></li>
+      <li><a href="blog.html">المدونة</a></li>
+      <li><a href="announcements.html">الإعلانات</a></li>
+      <li><a href="about.html">من نحن</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>برمجة الألعاب باستخدام سكراتش</h1>
+        <p>
+          تعلّم كيف تصنع ألعابك الخاصة خطوة بخطوة باستخدام سكراتش، من التحريك والتفاعل إلى النقاط والفوز والخسارة.
+        </p>
+
+        <div class="hero-badges">
+          <div class="hero-badge">مناسب للمبتدئين</div>
+          <div class="hero-badge">مشاريع عملية</div>
+          <div class="hero-badge">تطبيقات ممتعة</div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>ماذا ستتعلم في هذه الدورة؟</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> فهم واجهة سكراتش بسهولة</li>
+          <li><i class="fas fa-check-circle"></i> تحريك الشخصيات والخلفيات</li>
+          <li><i class="fas fa-check-circle"></i> إنشاء لعبة نقاط وتحديات</li>
+          <li><i class="fas fa-check-circle"></i> إضافة أصوات ومؤثرات ممتعة</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <div class="course-layout">
+
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>دروس الدورة</h2>
+          <p>اختر الدرس الذي تريد تعلمه</p>
+        </div>
+
+        <div class="lesson-list">
+          <button class="lesson-item active" onclick="goToLesson(0)">
+            <span class="lesson-number">1</span>
+            <span class="lesson-title">التعرف على واجهة سكراتش</span>
+          </button>
+
+          <button class="lesson-item" onclick="goToLesson(1)">
+            <span class="lesson-number">2</span>
+            <span class="lesson-title">تحريك الشخصية باستخدام الأوامر</span>
+          </button>
+
+          <button class="lesson-item" onclick="goToLesson(2)">
+            <span class="lesson-number">3</span>
+            <span class="lesson-title">إضافة الخلفيات والأصوات</span>
+          </button>
+
+          <button class="lesson-item" onclick="goToLesson(3)">
+            <span class="lesson-number">4</span>
+            <span class="lesson-title">إنشاء نظام النقاط في اللعبة</span>
+          </button>
+
+          <button class="lesson-item" onclick="goToLesson(4)">
+            <span class="lesson-number">5</span>
+            <span class="lesson-title">مشروع: اصنع لعبتك الأولى</span>
+          </button>
+        </div>
+      </aside>
+
+      <section class="main-content">
+
+        <div class="content-card">
+          <div class="lesson-top">
+            <div class="lesson-title-wrap">
+              <h2 id="lessonTitle">التعرف على واجهة سكراتش</h2>
+              <p id="lessonSubtitle">ابدأ بفهم أجزاء البرنامج وكيفية استخدامه لصناعة الألعاب.</p>
+            </div>
+
+            <div class="lesson-badge" id="lessonCounter">الدرس 1 من 5</div>
+          </div>
+
+          <div class="video-box">
+            <video id="lessonVideo" controls>
+              <source src="videos/scratch-lesson-1.mp4" type="video/mp4">
+              متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+          </div>
+
+          <h3 class="section-title">شرح الدرس</h3>
+          <div class="lesson-text" id="lessonText">
+            في هذا الدرس سنتعرف على بيئة سكراتش: منطقة البرمجة، قائمة الأوامر، الكائنات، والخلفيات.
+            الهدف هو أن يفهم المتعلم كيف يبدأ مشروعه وأين يضع الأوامر وكيف يشاهد النتيجة مباشرة.
+          </div>
+
+          <h3 class="section-title">أهداف الدرس</h3>
+          <div class="lesson-goals" id="lessonGoals">
+            <div class="goal-card">
+              <h4>فهم الواجهة</h4>
+              <p>معرفة الأماكن الأساسية داخل سكراتش واستخدام كل جزء بطريقة صحيحة.</p>
+            </div>
+            <div class="goal-card">
+              <h4>تشغيل مشروع بسيط</h4>
+              <p>القدرة على فتح مشروع والبدء في إضافة أول أوامر برمجية.</p>
+            </div>
+          </div>
+
+          <div class="task-box">
+            <h3>تحدي صغير</h3>
+            <p id="lessonTask">
+              افتح سكراتش وحاول تحديد مكان الكائنات ومنطقة الأوامر ومنطقة العرض، ثم أنشئ مشروعًا جديدًا.
+            </p>
+          </div>
+
+          <div class="lesson-nav">
+            <button class="btn btn-light" onclick="prevLesson()">الدرس السابق</button>
+            <button class="btn btn-primary" onclick="nextLesson()">الدرس التالي</button>
+          </div>
+        </div>
+
+        <div class="quiz-box">
+          <h3>اختبر فهمك</h3>
+          <p class="quiz-note">أجب عن الأسئلة التالية بعد مشاهدة الدرس.</p>
+
+          <form id="quizForm">
+            <div id="questionsContainer"></div>
+
+            <div class="quiz-actions">
+              <button type="button" class="btn btn-primary" onclick="checkAnswers()">تحقق من الإجابات</button>
+              <button type="button" class="btn btn-light" onclick="resetQuiz()">إعادة المحاولة</button>
+            </div>
+          </form>
+
+          <div id="resultBox" class="result-box"></div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 أكاديمية باز | دورة برمجة الألعاب باستخدام سكراتش</p>
+  </footer>
+
+  <script>
+    const lessons = [
+      {
+        title: "التعرف على واجهة سكراتش",
+        subtitle: "ابدأ بفهم أجزاء البرنامج وكيفية استخدامه لصناعة الألعاب.",
+        video: "videos/scratch-lesson-1.mp4",
+        text: "في هذا الدرس سنتعرف على بيئة سكراتش: منطقة البرمجة، قائمة الأوامر، الكائنات، والخلفيات. الهدف هو أن يفهم المتعلم كيف يبدأ مشروعه وأين يضع الأوامر وكيف يشاهد النتيجة مباشرة.",
+        goals: [
+          { title: "فهم الواجهة", desc: "معرفة الأماكن الأساسية داخل سكراتش واستخدام كل جزء بطريقة صحيحة." },
+          { title: "تشغيل مشروع بسيط", desc: "القدرة على فتح مشروع والبدء في إضافة أول أوامر برمجية." }
+        ],
+        task: "افتح سكراتش وحاول تحديد مكان الكائنات ومنطقة الأوامر ومنطقة العرض، ثم أنشئ مشروعًا جديدًا.",
+        questions: [
+          {
+            question: "ما اسم البرنامج الذي نستخدمه في هذه الدورة؟",
+            options: ["Photoshop", "Scratch", "Excel"],
+            answer: 1
+          },
+          {
+            question: "أين نضع الأوامر البرمجية؟",
+            options: ["في منطقة البرمجة", "في لوحة المفاتيح", "في شريط المتصفح"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "تحريك الشخصية باستخدام الأوامر",
+        subtitle: "تعلم كيف تجعل الشخصية تتحرك وتستجيب للأوامر.",
+        video: "videos/scratch-lesson-2.mp4",
+        text: "في هذا الدرس سنتعلم أوامر الحركة الأساسية مثل التحرك للأمام والدوران والانتقال بين المواقع. هذه الخطوة مهمة جدًا لصناعة أي لعبة تعتمد على التحكم بالشخصية.",
+        goals: [
+          { title: "أوامر الحركة", desc: "استخدام أوامر مثل move و turn و go to لتحريك الشخصية بسهولة." },
+          { title: "التحكم بالمشهد", desc: "جعل الشخصية تتحرك بشكل منطقي داخل اللعبة." }
+        ],
+        task: "اجعل الشخصية تتحرك 10 خطوات عند الضغط على زر البداية، ثم تدور عند ملامسة الحافة.",
+        questions: [
+          {
+            question: "أي نوع من الأوامر نستخدم لتحريك الشخصية؟",
+            options: ["أوامر الحركة", "أوامر الرسم فقط", "أوامر الصوت فقط"],
+            answer: 0
+          },
+          {
+            question: "ما فائدة تحريك الشخصية؟",
+            options: ["لجعل اللعبة تفاعلية", "لتغيير لون الشاشة فقط", "لإغلاق المشروع"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "إضافة الخلفيات والأصوات",
+        subtitle: "اجعل لعبتك أكثر جمالاً ومتعة بالخلفيات والمؤثرات الصوتية.",
+        video: "videos/scratch-lesson-3.mp4",
+        text: "سنتعلم هنا كيف نضيف خلفيات مناسبة للمشهد، وكيف نضيف أصواتًا عند الحركة أو الفوز أو عند لمس عنصر معين. هذه العناصر تجعل اللعبة أكثر حيوية.",
+        goals: [
+          { title: "تحسين الشكل", desc: "اختيار خلفيات مناسبة لنوع اللعبة التي تبنيها." },
+          { title: "تحسين التفاعل", desc: "استخدام الأصوات لجعل التجربة أكثر متعة وإثارة." }
+        ],
+        task: "أضف خلفية مناسبة للعبتك وأدخل صوتًا يظهر عند جمع عنصر أو بداية اللعب.",
+        questions: [
+          {
+            question: "ما الذي يجعل اللعبة أكثر حيوية؟",
+            options: ["الخلفيات والأصوات", "إزالة الكائنات", "إيقاف الحركة"],
+            answer: 0
+          },
+          {
+            question: "متى يمكن تشغيل صوت في اللعبة؟",
+            options: ["عند جمع نقطة أو الضغط على زر", "فقط عند إغلاق الصفحة", "لا يمكن تشغيل الأصوات"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "إنشاء نظام النقاط في اللعبة",
+        subtitle: "تعلم كيف تمنح اللاعب نقاطًا عند تحقيق أهداف داخل اللعبة.",
+        video: "videos/scratch-lesson-4.mp4",
+        text: "في هذا الدرس ستتعلم استخدام المتغيرات داخل سكراتش لإنشاء عداد نقاط. سنربط جمع العناصر أو تحقيق أهداف بزيادة النقاط، وهذا عنصر أساسي في معظم الألعاب.",
+        goals: [
+          { title: "فهم المتغيرات", desc: "التعرف على مفهوم المتغير وكيف نستخدمه داخل اللعبة." },
+          { title: "إنشاء عداد نقاط", desc: "زيادة النقاط عند تحقيق مهمة أو جمع عنصر." }
+        ],
+        task: "أنشئ متغيرًا باسم النقاط واجعله يزيد بمقدار 1 كلما لمست الشخصية العنصر المطلوب.",
+        questions: [
+          {
+            question: "ما الذي نستخدمه لإنشاء النقاط؟",
+            options: ["متغير", "خلفية", "صوت فقط"],
+            answer: 0
+          },
+          {
+            question: "متى تزيد النقاط عادة؟",
+            options: ["عند جمع عنصر أو الفوز", "عند إغلاق اللعبة", "عند حذف الشخصية"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "مشروع: اصنع لعبتك الأولى",
+        subtitle: "اجمع ما تعلمته وابدأ ببناء لعبة بسيطة من فكرتك.",
+        video: "videos/scratch-lesson-5.mp4",
+        text: "الآن حان وقت التطبيق. في هذا الدرس ستجمع كل ما تعلمته: الحركة، الخلفيات، الأصوات، والنقاط، لتصنع لعبة صغيرة خاصة بك. يمكنك أن تجعل الشخصية تجمع عناصر أو تتجنب عوائق.",
+        goals: [
+          { title: "بناء مشروع كامل", desc: "دمج الأوامر المختلفة في لعبة واحدة بسيطة." },
+          { title: "التفكير الإبداعي", desc: "اختيار فكرة اللعبة وتطويرها بطريقتك الخاصة." }
+        ],
+        task: "أنشئ لعبة بسيطة يكون فيها لاعب وشخصية متحركة ونقاط وصوت فوز في النهاية.",
+        questions: [
+          {
+            question: "ما الهدف من هذا الدرس؟",
+            options: ["إنشاء لعبة كاملة بسيطة", "حذف المشروع", "إيقاف البرمجة"],
+            answer: 0
+          },
+          {
+            question: "ما العناصر التي يمكن جمعها في المشروع؟",
+            options: ["الحركة والنقاط والصوت", "الأزرار فقط", "الصورة فقط"],
+            answer: 0
+          }
+        ]
+      }
+    ];
+
+    let currentLesson = 0;
+
+    function renderQuestions() {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      lessons[currentLesson].questions.forEach((q, qIndex) => {
+        const html = `
+          <div class="question">
+            <h4>${qIndex + 1}. ${q.question}</h4>
+            <div class="options">
+              ${q.options.map((option, oIndex) => `
+                <label class="option">
+                  <input type="radio" name="question${qIndex}" value="${oIndex}">
+                  <span>${option}</span>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `;
+        container.innerHTML += html;
+      });
+    }
+
+    function renderGoals() {
+      const goalsContainer = document.getElementById("lessonGoals");
+      goalsContainer.innerHTML = "";
+
+      lessons[currentLesson].goals.forEach(goal => {
+        goalsContainer.innerHTML += `
+          <div class="goal-card">
+            <h4>${goal.title}</h4>
+            <p>${goal.desc}</p>
+          </div>
+        `;
+      });
+    }
+
+    function loadLesson(index) {
+      currentLesson = index;
+
+      document.getElementById("lessonTitle").textContent = lessons[index].title;
+      document.getElementById("lessonSubtitle").textContent = lessons[index].subtitle;
+      document.getElementById("lessonText").textContent = lessons[index].text;
+      document.getElementById("lessonTask").textContent = lessons[index].task;
+      document.getElementById("lessonCounter").textContent = `الدرس ${index + 1} من ${lessons.length}`;
+
+      const video = document.getElementById("lessonVideo");
+      video.querySelector("source").src = lessons[index].video;
+      video.load();
+
+      document.querySelectorAll(".lesson-item").forEach((item, i) => {
+        item.classList.toggle("active", i === index);
+      });
+
+      renderGoals();
+      renderQuestions();
+      resetQuiz();
+    }
+
+    function goToLesson(index) {
+      window.location.href = `scratch.html?lesson=${index + 1}`;
+    }
+
+    function checkAnswers() {
+      const resultBox = document.getElementById("resultBox");
+      let score = 0;
+      const questions = lessons[currentLesson].questions;
+
+      questions.forEach((q, qIndex) => {
+        const selected = document.querySelector(`input[name="question${qIndex}"]:checked`);
+        if (selected && Number(selected.value) === q.answer) {
+          score++;
+        }
+      });
+
+      if (score === questions.length) {
+        resultBox.className = "result-box success";
+        resultBox.textContent = `ممتاز! لقد أجبت بشكل صحيح على ${score} من ${questions.length}.`;
+      } else {
+        resultBox.className = "result-box fail";
+        resultBox.textContent = `أجبت بشكل صحيح على ${score} من ${questions.length}. حاول مرة أخرى وراجع الدرس.`;
+      }
+    }
+
+    function resetQuiz() {
+      document.getElementById("quizForm").reset();
+      const resultBox = document.getElementById("resultBox");
+      resultBox.className = "result-box";
+      resultBox.textContent = "";
+    }
+
+    function nextLesson() {
+      if (currentLesson < lessons.length - 1) {
+        goToLesson(currentLesson + 1);
+      }
+    }
+
+    function prevLesson() {
+      if (currentLesson > 0) {
+        goToLesson(currentLesson - 1);
+      }
+    }
+
+    function initLessonFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const lessonParam = parseInt(params.get("lesson"), 10);
+
+      if (!isNaN(lessonParam) && lessonParam >= 1 && lessonParam <= lessons.length) {
+        loadLesson(lessonParam - 1);
+      } else {
+        loadLesson(0);
+      }
+    }
+
+    initLessonFromURL();
+  </script>
+
+</body>
+</html>

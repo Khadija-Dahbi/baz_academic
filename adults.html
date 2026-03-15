@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية باز للكبار</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+        :root {
+            --primary: #4338ca;
+            --secondary: #4f46e5;
+            --light-bg: #eef2ff;
+            --page-bg: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+            --transition: 0.3s ease;
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--page-bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 8%;
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: #f59e0b;
+        }
+
+        .navbar ul {
+            display: flex;
+            gap: 26px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: var(--text-muted);
+            font-weight: 700;
+            transition: var(--transition);
+            padding-bottom: 4px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--primary);
+        }
+
+        .navbar a.active {
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 70px 8%;
+            background: var(--light-bg);
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 430px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.25;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.08rem;
+            margin-bottom: 24px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(79,70,229,0.22);
+            transition: var(--transition);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 70px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 2.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .tracks {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: grid;
+            gap: 18px;
+        }
+
+        .track {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-right: 5px solid var(--secondary);
+            border-radius: 18px;
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .track:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .track-main {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+        }
+
+        .track-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: #eef2ff;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .track-text {
+            flex: 1;
+        }
+
+        .track-text h3 {
+            margin-bottom: 6px;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .track-text p {
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+
+        .track-arrow {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            opacity: 0.75;
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .navbar ul {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 6%;
+            }
+
+            .section {
+                padding: 55px 6%;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .track {
+                padding: 18px;
+            }
+
+            .track-main {
+                align-items: flex-start;
+            }
+
+            .track-text h3 {
+                font-size: 1.05rem;
+            }
+
+            .track-icon {
+                width: 54px;
+                height: 54px;
+                font-size: 1.35rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            أكاديمية <span>باز</span>
+        </div>
+
+        <ul>
+    <ul class="nav-links">
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="adults.html">أكاديمية المحترفين</a></li>
+<li><a href="courses.html">الدورات المسجلة</a></li>
+<li><a href="projects.html">المشاريع</a></li>
+<li><a href="blog.html">المدونة</a></li>
+<li><a href="announcements.html">الإعلانات</a></li>
+<li><a href="about.html">من نحن</a></li>
+</ul>
+  </nav>
+
+    <section class="hero">
+        <div class="hero-image">
+            <img src="images/adults-hero.png" alt="تعلم الشباب والكبار">
+        </div>
+
+        <div class="hero-text">
+            <div class="hero-badge">أكاديمية باز للكبار</div>
+            <h1>ارتقِ بمسارك المهني والأكاديمي</h1>
+            <p>
+                برامج تعليمية احترافية، ومسارات متخصصة، ودورات مسجلة للكبار
+                من أجل تطوير المهارات وبناء مستقبل أكاديمي ومهني أقوى.
+            </p>
+            <a href="#tracks" class="hero-btn">عرض المسارات التعليمية</a>
+        </div>
+    </section>
+
+    <section id="tracks" class="section">
+        <div class="section-header">
+            <h2 class="section-title">المسارات الأكاديمية والمهنية</h2>
+            <p class="section-subtitle">
+                اختر المسار الذي يناسب طموحاتك، وابدأ التعلم بخطوات واضحة وعملية.
+            </p>
+        </div>
+
+        <div class="tracks">
+            <div class="track">
+                <div class="track-main">
+                    <div class="track-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="track-text">
+                        <h3>مسار التكنولوجيا والبرمجة</h3>
+                        <p>من تطوير الويب إلى الذكاء الاصطناعي وهندسة البرمجيات.</p>
+                    </div>
+                </div>
+                <div class="track-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-main">
+                    <div class="track-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="track-text">
+                        <h3>مسار اللغات والتواصل</h3>
+                        <p>تعلم اللغات العالمية وتطوير مهارات التواصل الأكاديمي والمهني.</p>
+                    </div>
+                </div>
+                <div class="track-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-main">
+                    <div class="track-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="track-text">
+                        <h3>مسار الأعمال والإدارة</h3>
+                        <p>تطوير المهارات في الإدارة، التسويق الرقمي، وريادة الأعمال.</p>
+                    </div>
+                </div>
+                <div class="track-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 أكاديمية باز</p>
+    </footer>
+
+</body>
+</html>

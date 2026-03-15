@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعلانات - أكاديمية باز</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+        :root{
+            --primary:#2563eb;
+            --danger:#ef4444;
+            --warning:#f59e0b;
+            --info:#3b82f6;
+            --dark:#0f172a;
+            --text:#475569;
+            --muted:#64748b;
+            --bg:#f8fafc;
+            --white:#ffffff;
+            --border:#e2e8f0;
+            --shadow-sm:0 4px 12px rgba(0,0,0,0.05);
+            --shadow-md:0 10px 25px rgba(0,0,0,0.08);
+            --transition:0.3s ease;
+        }
+
+        *{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            font-family:'Cairo',sans-serif;
+            background:var(--bg);
+            color:var(--dark);
+            line-height:1.8;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        ul{
+            list-style:none;
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:20px;
+            padding:16px 8%;
+            background:#fff;
+            box-shadow:var(--shadow-sm);
+            flex-wrap:wrap;
+        }
+
+        .logo{
+            font-size:1.9rem;
+            font-weight:900;
+            color:#2563eb;
+        }
+
+        .logo span{
+            color:#f59e0b;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:26px;
+            flex-wrap:wrap;
+            align-items:center;
+        }
+
+        .nav-links a{
+            color:var(--muted);
+            font-weight:700;
+            transition:var(--transition);
+            padding-bottom:4px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active{
+            color:var(--primary);
+        }
+
+        .nav-links a.active{
+            border-bottom:2px solid var(--primary);
+        }
+
+        .hero{
+            background:linear-gradient(135deg,#ef4444 0%, #dc2626 100%);
+            color:white;
+            text-align:center;
+            padding:70px 20px;
+        }
+
+        .hero h1{
+            font-size:3rem;
+            margin-bottom:12px;
+        }
+
+        .hero p{
+            font-size:1.1rem;
+            color:rgba(255,255,255,0.9);
+            max-width:760px;
+            margin:0 auto;
+        }
+
+        .section{
+            padding:60px 8%;
+        }
+
+        .container{
+            max-width:1100px;
+            margin:0 auto;
+        }
+
+        .announcements-list{
+            display:grid;
+            gap:22px;
+        }
+
+        .announcement-card{
+            background:var(--white);
+            border-radius:22px;
+            padding:28px;
+            box-shadow:var(--shadow-sm);
+            border:1px solid var(--border);
+            transition:var(--transition);
+            position:relative;
+            overflow:hidden;
+        }
+
+        .announcement-card:hover{
+            transform:translateY(-4px);
+            box-shadow:var(--shadow-md);
+        }
+
+        .announcement-card.important{
+            border-right:5px solid var(--danger);
+        }
+
+        .announcement-card.event{
+            border-right:5px solid var(--warning);
+        }
+
+        .announcement-card.update{
+            border-right:5px solid var(--info);
+        }
+
+        .announcement-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:15px;
+            flex-wrap:wrap;
+            margin-bottom:14px;
+        }
+
+        .announcement-date{
+            color:var(--muted);
+            font-size:0.95rem;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .tag{
+            display:inline-block;
+            padding:6px 12px;
+            border-radius:10px;
+            color:white;
+            font-size:0.88rem;
+            font-weight:700;
+        }
+
+        .tag-danger{
+            background:var(--danger);
+        }
+
+        .tag-warning{
+            background:var(--warning);
+        }
+
+        .tag-info{
+            background:var(--info);
+        }
+
+        .announcement-card h2{
+            font-size:2rem;
+            margin-bottom:10px;
+            color:var(--dark);
+        }
+
+        .announcement-card h3{
+            font-size:1.85rem;
+            margin-bottom:12px;
+            color:var(--dark);
+            line-height:1.5;
+        }
+
+        .announcement-card p{
+            color:var(--text);
+            font-size:1.05rem;
+            margin-bottom:16px;
+        }
+
+        .announcement-link{
+            color:var(--primary);
+            font-weight:700;
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            transition:var(--transition);
+        }
+
+        .announcement-link:hover{
+            gap:12px;
+        }
+
+        .footer{
+            background:#0f172a;
+            color:white;
+            text-align:center;
+            padding:30px 20px;
+            margin-top:40px;
+        }
+
+        .footer p{
+            opacity:0.8;
+        }
+
+        @media (max-width:992px){
+            .hero h1{
+                font-size:2.4rem;
+            }
+
+            .announcement-card h3{
+                font-size:1.5rem;
+            }
+        }
+
+        @media (max-width:768px){
+            .navbar{
+                justify-content:center;
+                text-align:center;
+            }
+
+            .nav-links{
+                justify-content:center;
+            }
+
+            .hero{
+                padding:55px 20px;
+            }
+
+            .hero h1{
+                font-size:2rem;
+            }
+
+            .hero p{
+                font-size:1rem;
+            }
+
+            .section{
+                padding:50px 6%;
+            }
+
+            .announcement-card{
+                padding:22px 18px;
+            }
+
+            .announcement-card h3{
+                font-size:1.3rem;
+            }
+
+            .announcement-card p{
+                font-size:1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">أكاديمية <span>باز</span></div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="adults.html">أكاديمية المحترفين</a></li>
+            <li><a href="courses.html">الدورات المسجلة</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="blog.html">المدونة</a></li>
+            <li><a href="announcements.html" class="active">الإعلانات</a></li>
+            <li><a href="about.html">من نحن</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>أحدث الإعلانات والأخبار</h1>
+        <p>
+            ابق على اطلاع دائم بآخر الأحداث، الفعاليات، والدورات الجديدة في أكاديمية باز.
+        </p>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="announcements-list">
+
+                <article class="announcement-card important">
+                    <div class="announcement-top">
+                        <div class="announcement-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>18 أكتوبر 2026</span>
+                        </div>
+                        <span class="tag tag-danger">هام جداً</span>
+                    </div>
+
+                    <h3>فتح باب التسجيل للمعسكر البرمجي المكثف (الكبار)</h3>
+
+                    <p>
+                        يسرنا الإعلان عن فتح باب التسجيل لمخيم تطوير تطبيقات الويب. الأماكن محدودة جداً! بادر بالتسجيل الآن لضمان مقعدك.
+                    </p>
+
+                    <a href="#" class="announcement-link">
+                        تفاصيل أكثر
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </article>
+
+                <article class="announcement-card event">
+                    <div class="announcement-top">
+                        <div class="announcement-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>12 أكتوبر 2026</span>
+                        </div>
+                        <span class="tag tag-warning">فعالية</span>
+                    </div>
+
+                    <h3>المعرض السنوي لمشاريع الأطفال 2026</h3>
+
+                    <p>
+                        ندعو جميع الآباء وأولياء الأمور لحضور المعرض السنوي للإبداع حيث يستعرض أطفال الأكاديمية ابتكاراتهم في الروبوتكس والبرمجة.
+                    </p>
+
+                    <a href="#" class="announcement-link">
+                        شاهد المشاريع
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </article>
+
+                <article class="announcement-card update">
+                    <div class="announcement-top">
+                        <div class="announcement-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>1 أكتوبر 2026</span>
+                        </div>
+                        <span class="tag tag-info">تحديث</span>
+                    </div>
+
+                    <h3>إضافة 50 درس جديد لمكتبة الدورات المسجلة</h3>
+
+                    <p>
+                        تم الانتهاء من رفع باقة جديدة من الدروس عبر قوائم تشغيل يوتيوب ضمن منصتنا. استمتع بتجربة المشاهدة المتصلة الان.
+                    </p>
+
+                    <a href="#" class="announcement-link">
+                        تصفح الدورات
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 أكاديمية باز | الإعلانات</p>
+    </footer>
+
+</body>
+</html>

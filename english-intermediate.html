@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المستوى المتوسط - الإنجليزية | أكاديمية باز</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+    :root{
+      --primary:#2563eb;
+      --secondary:#f59e0b;
+      --dark:#0f172a;
+      --text:#475569;
+      --muted:#64748b;
+      --bg:#f8fafc;
+      --white:#ffffff;
+      --border:#e2e8f0;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --shadow-sm:0 4px 12px rgba(0,0,0,0.05);
+      --shadow-md:0 10px 30px rgba(0,0,0,0.08);
+      --radius:18px;
+      --transition:0.3s ease;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Cairo',sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+      line-height:1.8;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:16px 8%;
+      background:#ffffff;
+      box-shadow:var(--shadow-sm);
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      font-size:1.9rem;
+      font-weight:900;
+      color:var(--primary);
+    }
+
+    .logo span{
+      color:var(--secondary);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-weight:700;
+      transition:var(--transition);
+      padding-bottom:4px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--primary);
+    }
+
+    .nav-links a.active{
+      border-bottom:2px solid var(--primary);
+    }
+
+    .hero{
+      background:linear-gradient(90deg,#2563eb 0%, #f59e0b 100%);
+      color:white;
+      text-align:center;
+      padding:55px 20px 45px;
+    }
+
+    .hero h1{
+      font-size:2.7rem;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:0 auto;
+      color:rgba(255,255,255,0.92);
+      font-size:1.05rem;
+    }
+
+    .page-wrap{
+      padding:35px 8% 60px;
+    }
+
+    .lesson-layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .sidebar,
+    .content-card,
+    .quiz-box{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+    }
+
+    .sidebar{
+      overflow:hidden;
+      position:sticky;
+      top:20px;
+    }
+
+    .sidebar-header{
+      padding:20px;
+      background:#eff6ff;
+      border-bottom:1px solid var(--border);
+    }
+
+    .sidebar-header h2{
+      font-size:1.3rem;
+      color:var(--dark);
+      margin-bottom:4px;
+    }
+
+    .sidebar-header p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .lesson-list{
+      padding:10px;
+    }
+
+    .lesson-item{
+      display:block;
+      width:100%;
+      border:none;
+      background:transparent;
+      text-align:right;
+      padding:14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition:var(--transition);
+      font-family:'Cairo',sans-serif;
+      margin-bottom:8px;
+    }
+
+    .lesson-item:hover{
+      background:#f8fafc;
+    }
+
+    .lesson-item.active{
+      background:#2563eb;
+      color:white;
+    }
+
+    .lesson-item .lesson-number{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:rgba(37,99,235,0.12);
+      color:var(--primary);
+      font-weight:900;
+      margin-left:10px;
+      vertical-align:middle;
+    }
+
+    .lesson-item.active .lesson-number{
+      background:rgba(255,255,255,0.18);
+      color:white;
+    }
+
+    .lesson-item .lesson-title{
+      font-weight:700;
+      font-size:1rem;
+      vertical-align:middle;
+    }
+
+    .main-content{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .content-card{
+      padding:24px;
+    }
+
+    .lesson-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .lesson-title-wrap h2{
+      font-size:2rem;
+      margin-bottom:6px;
+    }
+
+    .lesson-title-wrap p{
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .progress-badge{
+      background:#eff6ff;
+      color:var(--primary);
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .video-box{
+      border-radius:18px;
+      overflow:hidden;
+      background:#000;
+      margin-bottom:22px;
+      box-shadow:var(--shadow-md);
+    }
+
+    .video-box video{
+      width:100%;
+      height:460px;
+      object-fit:cover;
+      display:block;
+      background:#000;
+    }
+
+    .section-title{
+      font-size:1.35rem;
+      margin-bottom:12px;
+      color:var(--dark);
+    }
+
+    .lesson-text{
+      color:var(--text);
+      font-size:1.05rem;
+      line-height:2;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      padding:18px;
+      border-radius:16px;
+      margin-bottom:22px;
+    }
+
+    .lesson-nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:12px;
+      padding:12px 18px;
+      font-family:'Cairo',sans-serif;
+      font-weight:700;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#1d4ed8;
+    }
+
+    .btn-light{
+      background:#e2e8f0;
+      color:#0f172a;
+    }
+
+    .btn-light:hover{
+      background:#cbd5e1;
+    }
+
+    .quiz-box{
+      padding:24px;
+    }
+
+    .quiz-box h3{
+      font-size:1.5rem;
+      margin-bottom:6px;
+    }
+
+    .quiz-box .quiz-note{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .question{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:16px;
+      background:#fcfdff;
+    }
+
+    .question h4{
+      margin-bottom:12px;
+      font-size:1.05rem;
+    }
+
+    .options{
+      display:grid;
+      gap:10px;
+    }
+
+    .option{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      cursor:pointer;
+      transition:var(--transition);
+      background:white;
+    }
+
+    .option:hover{
+      border-color:#93c5fd;
+      background:#eff6ff;
+    }
+
+    .option input{
+      accent-color:var(--primary);
+    }
+
+    .quiz-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .result-box{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:14px;
+      font-weight:700;
+      display:none;
+    }
+
+    .result-box.success{
+      display:block;
+      background:#dcfce7;
+      color:#166534;
+      border:1px solid #86efac;
+    }
+
+    .result-box.fail{
+      display:block;
+      background:#fee2e2;
+      color:#991b1b;
+      border:1px solid #fca5a5;
+    }
+
+    .footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:28px 20px;
+      margin-top:40px;
+    }
+
+    .footer p{
+      opacity:0.85;
+    }
+
+    @media (max-width:1100px){
+      .lesson-layout{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+    }
+
+    @media (max-width:768px){
+      .navbar{
+        justify-content:center;
+        text-align:center;
+      }
+
+      .nav-links{
+        justify-content:center;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .page-wrap{
+        padding:25px 6% 50px;
+      }
+
+      .content-card,
+      .quiz-box{
+        padding:18px;
+      }
+
+      .video-box video{
+        height:250px;
+      }
+
+      .lesson-title-wrap h2{
+        font-size:1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">أكاديمية <span>باز</span></div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="adults.html">أكاديمية المحترفين</a></li>
+      <li><a href="courses.html" class="active">الدورات المسجلة</a></li>
+      <li><a href="projects.html">المشاريع</a></li>
+      <li><a href="blog.html">المدونة</a></li>
+      <li><a href="announcements.html">الإعلانات</a></li>
+      <li><a href="about.html">من نحن</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>اللغة الإنجليزية - المستوى المتوسط</h1>
+    <p>
+      طوّر مهاراتك في القواعد والمحادثة والتعبير اليومي باستخدام دروس أوضح وأعمق.
+    </p>
+  </header>
+
+  <main class="page-wrap">
+    <div class="lesson-layout">
+
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>دروس المستوى المتوسط</h2>
+          <p>اختر الدرس الذي تريد متابعته</p>
+        </div>
+
+        <div class="lesson-list">
+          <button class="lesson-item active" onclick="loadLesson(0)">
+            <span class="lesson-number">1</span>
+            <span class="lesson-title">Present Simple</span>
+          </button>
+
+          <button class="lesson-item" onclick="loadLesson(1)">
+            <span class="lesson-number">2</span>
+            <span class="lesson-title">Present Continuous</span>
+          </button>
+
+          <button class="lesson-item" onclick="loadLesson(2)">
+            <span class="lesson-number">3</span>
+            <span class="lesson-title">Daily Conversations</span>
+          </button>
+
+          <button class="lesson-item" onclick="loadLesson(3)">
+            <span class="lesson-number">4</span>
+            <span class="lesson-title">Asking Questions</span>
+          </button>
+
+          <button class="lesson-item" onclick="loadLesson(4)">
+            <span class="lesson-number">5</span>
+            <span class="lesson-title">Useful Vocabulary</span>
+          </button>
+        </div>
+      </aside>
+
+      <section class="main-content">
+
+        <div class="content-card">
+          <div class="lesson-top">
+            <div class="lesson-title-wrap">
+              <h2 id="lessonTitle">Present Simple</h2>
+              <p id="lessonSubtitle">تعلّم استخدام المضارع البسيط في الجمل اليومية والعادات المتكررة.</p>
+            </div>
+
+            <div class="progress-badge" id="lessonCounter">الدرس 1 من 5</div>
+          </div>
+
+          <div class="video-box">
+            <video id="lessonVideo" controls>
+              <source src="videos/intermediate-lesson-1.mp4" type="video/mp4">
+              متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+          </div>
+
+          <h3 class="section-title">نص الدرس</h3>
+          <div class="lesson-text" id="lessonText">
+            في هذا الدرس ستتعلم كيف نستخدم المضارع البسيط للتعبير عن العادات والحقائق العامة مثل:
+            I go to school every day. She works in a hospital.
+            كما ستتعلم متى نضيف s أو es مع الضمائر he, she, it.
+          </div>
+
+          <div class="lesson-nav">
+            <button class="btn btn-light" onclick="prevLesson()">الدرس السابق</button>
+            <button class="btn btn-primary" onclick="nextLesson()">الدرس التالي</button>
+          </div>
+        </div>
+
+        <div class="quiz-box">
+          <h3>أسئلة الدرس</h3>
+          <p class="quiz-note">أجب عن الأسئلة التالية ثم اضغط على زر التحقق من الإجابات.</p>
+
+          <form id="quizForm">
+            <div id="questionsContainer"></div>
+
+            <div class="quiz-actions">
+              <button type="button" class="btn btn-primary" onclick="checkAnswers()">تحقق من الإجابات</button>
+              <button type="button" class="btn btn-light" onclick="resetQuiz()">إعادة المحاولة</button>
+            </div>
+          </form>
+
+          <div id="resultBox" class="result-box"></div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 أكاديمية باز | المستوى المتوسط</p>
+  </footer>
+
+  <script>
+    const lessons = [
+      {
+        title: "Present Simple",
+        subtitle: "تعلّم استخدام المضارع البسيط في الجمل اليومية والعادات المتكررة.",
+        video: "videos/intermediate-lesson-1.mp4",
+        text: "في هذا الدرس ستتعلم كيف نستخدم المضارع البسيط للتعبير عن العادات والحقائق العامة مثل: I go to school every day. She works in a hospital. كما ستتعلم متى نضيف s أو es مع الضمائر he, she, it.",
+        questions: [
+          {
+            question: "أي جملة صحيحة؟",
+            options: ["He go to school.", "He goes to school.", "He going to school."],
+            answer: 1
+          },
+          {
+            question: "متى نستخدم Present Simple غالبًا؟",
+            options: ["للعادات اليومية", "للأحداث الماضية فقط", "للأوامر فقط"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "Present Continuous",
+        subtitle: "افهم كيف تتحدث عن الأشياء التي تحدث الآن.",
+        video: "videos/intermediate-lesson-2.mp4",
+        text: "في هذا الدرس سنتعلم المضارع المستمر للتعبير عن الأحداث الجارية الآن مثل: I am studying now. They are playing football. ستتعلم قاعدة be + verb + ing.",
+        questions: [
+          {
+            question: "أي جملة صحيحة؟",
+            options: ["She is reading now.", "She reading now.", "She read now."],
+            answer: 0
+          },
+          {
+            question: "ما التركيب الصحيح للمضارع المستمر؟",
+            options: ["فاعل + فعل فقط", "فاعل + will + فعل", "فاعل + be + verb-ing"],
+            answer: 2
+          }
+        ]
+      },
+      {
+        title: "Daily Conversations",
+        subtitle: "تدرّب على عبارات المحادثة اليومية الشائعة.",
+        video: "videos/intermediate-lesson-3.mp4",
+        text: "سنتعلم في هذا الدرس مجموعة من الجمل المستخدمة يوميًا في المحادثة، مثل: What are you doing? I’m on my way. That sounds great. هذه العبارات تساعدك على التحدث بشكل أكثر طبيعية.",
+        questions: [
+          {
+            question: "ما معنى عبارة That sounds great؟",
+            options: ["هذا يبدو رائعًا", "أنا متعب", "هذا صعب جدًا"],
+            answer: 0
+          },
+          {
+            question: "أي عبارة مناسبة لسؤال شخص عما يفعله الآن؟",
+            options: ["What are you doing?", "Where were you yesterday?", "Do you like tea?"],
+            answer: 0
+          }
+        ]
+      },
+      {
+        title: "Asking Questions",
+        subtitle: "تعلّم كيف تصوغ الأسئلة بطريقة صحيحة وواضحة.",
+        video: "videos/intermediate-lesson-4.mp4",
+        text: "في هذا الدرس ستتعلم أدوات السؤال مثل: What, Where, When, Why, How. كما ستتعلم كيف تسأل عن الأشخاص والأماكن والأسباب والمعلومات العامة.",
+        questions: [
+          {
+            question: "أي أداة سؤال تناسب السؤال عن المكان؟",
+            options: ["Why", "Where", "When"],
+            answer: 1
+          },
+          {
+            question: "أي جملة صحيحة؟",
+            options: ["Where you live?", "Where do you live?", "Where does live you?"],
+            answer: 1
+          }
+        ]
+      },
+      {
+        title: "Useful Vocabulary",
+        subtitle: "وسّع حصيلتك اللغوية بكلمات مفيدة في الحياة اليومية.",
+        video: "videos/intermediate-lesson-5.mp4",
+        text: "في هذا الدرس سنتعرف على مجموعة من الكلمات المهمة في الحياة اليومية مثل: appointment, travel, improve, activity, confident. وستتعلم كيف تستخدمها في جمل قصيرة ومفهومة.",
+        questions: [
+          {
+            question: "ما معنى كلمة Travel؟",
+            options: ["يسافر", "يكتب", "يطبخ"],
+            answer: 0
+          },
+          {
+            question: "أي كلمة تدل على الثقة؟",
+            options: ["Activity", "Confident", "Improve"],
+            answer: 1
+          }
+        ]
+      }
+    ];
+
+    let currentLesson = 0;
+
+    function renderQuestions() {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      lessons[currentLesson].questions.forEach((q, qIndex) => {
+        const questionHTML = `
+          <div class="question">
+            <h4>${qIndex + 1}. ${q.question}</h4>
+            <div class="options">
+              ${q.options.map((option, oIndex) => `
+                <label class="option">
+                  <input type="radio" name="question${qIndex}" value="${oIndex}">
+                  <span>${option}</span>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `;
+        container.innerHTML += questionHTML;
+      });
+    }
+
+    function loadLesson(index) {
+      currentLesson = index;
+
+      document.getElementById("lessonTitle").textContent = lessons[index].title;
+      document.getElementById("lessonSubtitle").textContent = lessons[index].subtitle;
+      document.getElementById("lessonText").textContent = lessons[index].text;
+      document.getElementById("lessonCounter").textContent = `الدرس ${index + 1} من ${lessons.length}`;
+
+      const video = document.getElementById("lessonVideo");
+      video.querySelector("source").src = lessons[index].video;
+      video.load();
+
+      document.querySelectorAll(".lesson-item").forEach((item, i) => {
+        item.classList.toggle("active", i === index);
+      });
+
+      renderQuestions();
+      resetQuiz();
+    }
+
+    function checkAnswers() {
+      const resultBox = document.getElementById("resultBox");
+      let score = 0;
+      const questions = lessons[currentLesson].questions;
+
+      questions.forEach((q, qIndex) => {
+        const selected = document.querySelector(`input[name="question${qIndex}"]:checked`);
+        if (selected && Number(selected.value) === q.answer) {
+          score++;
+        }
+      });
+
+      if (score === questions.length) {
+        resultBox.className = "result-box success";
+        resultBox.textContent = `ممتاز! لقد أجبت بشكل صحيح على ${score} من ${questions.length}.`;
+      } else {
+        resultBox.className = "result-box fail";
+        resultBox.textContent = `أجبت بشكل صحيح على ${score} من ${questions.length}. حاول مرة أخرى.`;
+      }
+    }
+
+    function resetQuiz() {
+      document.getElementById("quizForm").reset();
+      const resultBox = document.getElementById("resultBox");
+      resultBox.className = "result-box";
+      resultBox.textContent = "";
+    }
+
+    function nextLesson() {
+      if (currentLesson < lessons.length - 1) {
+        loadLesson(currentLesson + 1);
+      }
+    }
+
+    function prevLesson() {
+      if (currentLesson > 0) {
+        loadLesson(currentLesson - 1);
+      }
+    }
+
+    renderQuestions();
+  </script>
+
+</body>
+</html>
