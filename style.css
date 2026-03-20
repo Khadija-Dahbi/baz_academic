@@ -1,0 +1,55 @@
+/* الألوان الأصلية من كودك القديم */
+:root {
+    --primary-color: #2563eb; 
+    --secondary-color: #f59e0b;
+    --kids-color: #ec4899;   /* الوردي الأصلي */
+    --adults-color: #4338ca; /* البنفسجي الأصلي */
+    --bg-color: #f8fafc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap');
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    direction: rtl;
+}
+
+/* الهيدر بنفس تصميمك الأصلي (Glassmorphism) */
+.academic-header {
+    background: linear-gradient(135deg, var(--adults-color) 0%, #312e81 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    clip-path: ellipse(150% 100% at 50% 0%); /* انحناء بسيط جميل */
+}
+
+/* الكروت بنفس استايل الأكاديمية القديم */
+.step {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    border-bottom: 5px solid var(--adults-color);
+    transition: var(--transition);
+    text-align: right;
+}
+
+.step:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* زر الذكاء الاصطناعي بنفس استايل أزرار الكبار */
+.btn-ai {
+    background-color: var(--adults-color);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px 0 rgba(67, 56, 202, 0.39);
+}
