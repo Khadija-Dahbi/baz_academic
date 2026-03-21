@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>أكاديمية باز</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -19,7 +21,9 @@
       color: #0f172a;
     }
 
-    a { text-decoration: none; }
+    a {
+      text-decoration: none;
+    }
 
     /* NAVBAR */
     .navbar {
@@ -27,8 +31,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 8%;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     .logo {
@@ -37,55 +43,143 @@
       color: #2563eb;
     }
 
-    .logo span { color: #f59e0b; }
+    .logo span {
+      color: #f59e0b;
+    }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       color: #64748b;
       font-weight: 700;
+      transition: 0.3s;
     }
 
-    .nav-links a:hover { color: #2563eb; }
+    .nav-links a:hover {
+      color: #2563eb;
+    }
 
     /* HERO */
     .hero {
-      padding: 60px 8%;
+      padding: 80px 8%;
       background: #eaf2ff;
       display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
     }
 
     .hero-text {
-      flex: 1;
+      flex: 1 1 420px;
+      max-width: 520px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .hero-text p {
+      color: #475569;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      margin-bottom: 25px;
     }
 
     .hero-buttons {
       display: flex;
       gap: 15px;
-      margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 10px 20px;
+      padding: 12px 22px;
       border-radius: 10px;
-      font-weight: bold;
+      font-weight: 700;
+      display: inline-block;
+      transition: 0.3s;
     }
 
-    .btn-blue { background:#2563eb; color:white; }
-    .btn-pink { background:#ec4899; color:white; }
+    .btn-blue {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-pink {
+      background: #ec4899;
+      color: white;
+    }
+
+    .btn-pink:hover {
+      background: #db2777;
+    }
+
+    .hero-media {
+      flex: 1 1 520px;
+      max-width: 560px;
+      width: 100%;
+    }
 
     .hero-video {
       width: 100%;
-      height: 300px;
-      border-radius: 15px;
-      border: none;
+      height: 320px;
+      border: 0;
+      border-radius: 18px;
+      display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      background: #000;
+    }
+
+    /* ACADEMY */
+    .academies {
+      padding: 60px 8%;
+    }
+
+    .academy-card {
+      padding: 40px;
+      border-radius: 18px;
+      color: white;
+      max-width: 100%;
+    }
+
+    .adults {
+      background: linear-gradient(135deg, #ec4899, #f43f5e);
+    }
+
+    .academy-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .academy-card p {
+      opacity: 0.95;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    .academy-card a {
+      display: inline-block;
+      background: white;
+      color: #0f172a;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
     }
 
     /* COURSES */
@@ -94,29 +188,54 @@
       text-align: center;
     }
 
+    .courses h2 {
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .courses p {
+      color: #475569;
+      margin-bottom: 30px;
+    }
+
     .courses-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap: 25px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
     .course-card {
       background: white;
-      border-radius: 15px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
     }
 
     .course-card img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
+      display: block;
     }
 
     .course-content {
-      padding: 20px;
+      padding: 15px;
       text-align: right;
+    }
+
+    .course-content h3 {
+      margin: 10px 0;
+    }
+
+    .course-meta {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
     }
 
     .course-btn {
@@ -125,112 +244,286 @@
       color: white;
       padding: 10px;
       border-radius: 8px;
-      margin-top: 10px;
       text-align: center;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .course-btn:hover {
+      background: #1d4ed8;
     }
 
     /* FOOTER */
     .footer {
       background: #06153b;
       color: white;
-      padding: 60px 8% 20px;
-      margin-top: 50px;
+      padding: 60px 8% 25px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
       gap: 40px;
+      align-items: flex-start;
     }
 
-    .footer h3 {
-      margin-bottom: 15px;
+    .footer-brand h3,
+    .footer-links h3,
+    .footer-sections h3,
+    .footer-contact h3 {
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: #ffffff;
+      position: relative;
+      display: inline-block;
     }
 
-    .footer a {
+    .footer-links h3::after,
+    .footer-sections h3::after,
+    .footer-contact h3::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -8px;
+      width: 60px;
+      height: 4px;
+      background: #2563eb;
+      border-radius: 3px;
+    }
+
+    .brand-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 18px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+
+    .brand-title span {
+      color: #f59e0b;
+    }
+
+    .footer-brand p {
+      color: #9fb3d9;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      margin-bottom: 25px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+    }
+
+    .footer-links a,
+    .footer-sections a {
       color: #9fb3d9;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
+      font-size: 1.05rem;
+      transition: 0.3s;
     }
 
-    .footer p {
+    .footer-links a:hover,
+    .footer-sections a:hover {
+      color: #ffffff;
+      padding-right: 6px;
+    }
+
+    .footer-contact p {
       color: #9fb3d9;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-contact i {
+      color: #ffffff;
+      font-size: 1.3rem;
+      min-width: 24px;
     }
 
     .footer-bottom {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 45px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: #7f96c6;
+      font-size: 1rem;
     }
 
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-text,
+      .hero-media {
+        max-width: 100%;
+      }
+
+      .hero-video {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 50px 6%;
+      }
+
+      .academies,
+      .courses,
+      .footer {
+        padding-right: 6%;
+        padding-left: 6%;
+      }
+
+      .hero-text h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero-video {
+        height: 230px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="logo">أكاديمية <span>باز</span></div>
+  <nav class="navbar">
+    <div class="logo">أكاديمية <span>باز</span></div>
 
-  <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="adults.html">المحترفين</a></li>
-    <li><a href="courses.html">الدورات</a></li>
-    <li><a href="about.html">من نحن</a></li>
-  </ul>
-</nav>
+    <ul class="nav-links">
+      <li><a href="./index.html">الرئيسية</a></li>
+      <li><a href="./adults.html">أكاديمية المحترفين</a></li>
+      <li><a href="./courses.html">الدورات المسجلة</a></li>
+      <li><a href="./projects.html">المشاريع</a></li>
+      <li><a href="./blog.html">المدونة</a></li>
+      <li><a href="./announcements.html">الإعلانات</a></li>
+      <li><a href="./about.html">من نحن</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>أهلاً بكم في أكاديمية باز للمحترفين</h1>
 
-  <div class="hero-text">
-    <h1>أهلاً بكم في أكاديمية باز</h1>
-    <p>منصة تعليمية حديثة لتطوير مهاراتك.</p>
+      <p>
+        منصة تعليمية حديثة ومبتكرة مخصصة للمسارات الأكاديمية والمهنية الاحترافية.
+        طوّر مهاراتك، ابنِ خبرتك، وانطلق في رحلتك التعليمية معنا نحو مستقبل أقوى.
+      </p>
 
-    <div class="hero-buttons">
-      <a href="courses.html" class="btn btn-blue">ابدأ الآن</a>
-      <a href="about.html" class="btn btn-pink">اعرف المزيد</a>
-    </div>
-  </div>
-
-  <div class="hero-media">
-    <iframe class="hero-video"
-      src="https://www.youtube.com/embed/PsMz1QkBnx8?autoplay=1&mute=1&loop=1&playlist=PsMz1QkBnx8"
-      allow="autoplay"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-</section>
-
-<!-- COURSES -->
-<section class="courses">
-    <h2>أحدث الدورات المسجلة</h2>
-    <p>اختر من بين مجموعة واسعة من الدورات المصممة بعناية لكافة المستويات.</p>
-
-
-  <div class="courses-grid">
-
-    <div class="course-card">
-      <img src="engeering-baz.png">
-      <div class="course-content">
-        <h3>أساسيات البرمجة</h3>
-        <a href="courses.html" class="course-btn">عرض</a>
+      <div class="hero-buttons">
+        <a href="./courses.html" class="btn btn-blue">ابدأ الآن</a>
+        <a href="./about.html" class="btn btn-pink">اعرف المزيد</a>
       </div>
     </div>
 
-    <div class="course-card">
-      <img src="genuis-baz.png">
-      <div class="course-content">
+    <div class="hero-media">
+  <iframe
+    class="hero-video"
+    src="https://www.youtube.com/embed/PsMz1QkBnx8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=PsMz1QkBnx8&rel=0"
+    title="فيديو أكاديمية باز"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+  </section>
+
+  <section class="academies">
+    <div class="academy-card adults">
+      <h2>أكاديمية المحترفين</h2>
+
+      <p>
+        مسارات احترافية للبالغين، برامج أكاديمية متقدمة ودورات متخصصة لتطوير مسيرتك المهنية
+        في مجالات البرمجة، التقنية، التصميم، والمهارات الحديثة المطلوبة في سوق العمل.
+      </p>
+
+      <a href="./adults.html">استكشف المسارات</a>
+    </div>
+  </section>
+
+  <section class="courses">
+    <h2>أحدث الدورات المسجلة</h2>
+    <p>اختر من بين مجموعة واسعة من الدورات المصممة بعناية لكافة المستويات.</p>
+
+    <div class="courses-grid">
+
+      <div class="course-card">
+        <img src="./images/engeering-baz.png" alt="أساسيات البرمجة" />
+        <div class="course-content">
+          <h3>أساسيات البرمجة</h3>
+          <div class="course-meta">10 دروس • مبتدئ</div>
+          <a href="./courses.html" class="course-btn">عرض الدروس</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <img src="./images/genuis-baz.png" alt="التطوير الشامل لتطبيقات الويب" />
+        <div class="course-content">
           <h3>التطوير الشامل لتطبيقات الويب</h3>
           <div class="course-meta">25 درس • متقدم</div>
           <a href="./courses.html" class="course-btn">عرض الدروس</a>
         </div>
       </div>
 
-    <div class="course-card">
-      <img src="apple-baz.png">
-      <div class="course-content">
+      <div class="course-card">
+        <img src="./images/apple-baz.png" alt="تعلم اللغة الإنجليزية" />
+        <div class="course-content">
           <h3>تعلم اللغة الإنجليزية</h3>
           <div class="course-meta">15 درس • عام</div>
           <a href="./courses.html" class="course-btn">عرض الدروس</a>
@@ -238,9 +531,6 @@
       </div>
 
     </div>
-
-  </div>
-</section>
 
     <br />
 
